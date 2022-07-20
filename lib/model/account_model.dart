@@ -176,4 +176,9 @@ class AccountModel {
     print(callBack.message!);
     return callBack;
   }
+
+  Future<void> exit() async {
+    await HttpsUtil.getResponse("http://localhost:10380/userExit");
+    // print('拿到信息=>${result.success!}');
+  }
 }

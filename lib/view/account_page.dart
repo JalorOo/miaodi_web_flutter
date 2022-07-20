@@ -127,123 +127,6 @@ class _AccountPageState extends State<AccountPage> {
     setState(() {});
   }
 
-  unSupportItem() {
-    ListView(
-      children: [
-        Divider(
-          height: 2,
-        ),
-        Padding(
-          padding: EdgeInsets.only(left: 68, top: 20, bottom: 6),
-          child: Text(
-            S.of(context).seniorMemberServices,
-            style: TextStyle(
-              color: Colors.orange,
-              fontSize: 13,
-            ),
-          ),
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.wb_cloudy_rounded,
-            color: Colors.indigoAccent,
-          ),
-          title: Text("拉取文章备份"),
-          subtitle: Text("从云端设定的云端拉取数据"),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.refresh,
-            color: Colors.lightGreen,
-          ),
-          title: Text("自动从云拉取"),
-          subtitle: Text("及时同步云端到本地。默认使用喵滴的云服务。若启动了WebDav,则使用WebDav"),
-          trailing: Switch(
-            activeColor: Colors.orange,
-            value: _currentState1,
-            onChanged: (bool value) {
-              setState(() {
-                _currentState1 = !_currentState1;
-              });
-              if (_currentState1 == true) {
-              } else {}
-            },
-          ),
-        ),
-        ListTile(
-          leading: SizedBox(),
-          title: Text("拉取Todo备份"),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.event,
-            color: Colors.grey,
-          ),
-          title: Text("剪贴板记录"),
-          subtitle: Text("开启后,App可读取剪贴板进行文本导入"),
-          trailing: Switch(
-            activeColor: Colors.orange,
-            value: _currentState2,
-            onChanged: (bool value) {
-              setState(() {
-                _currentState2 = !_currentState2;
-              });
-              if (_currentState2 == true) {
-                chooseClipBoard = true;
-              } else {
-                chooseClipBoard = false;
-              }
-            },
-          ),
-        ),
-        ListTile(
-          leading: SizedBox(),
-          title: Text(
-            "剪贴板导入询问",
-            style: TextStyle(
-              color: chooseClipBoard ? Colors.black : Colors.grey,
-            ),
-          ),
-          subtitle: Text(
-            "开启后,每次从剪贴板导入期间会进行询问",
-            style: TextStyle(
-              color: chooseClipBoard ? Colors.black : Colors.grey,
-            ),
-          ),
-          trailing: Switch(
-            activeColor: Colors.orange,
-            value: _currentState3,
-            onChanged: (bool value) {
-              setState(() {
-                _currentState3 = !_currentState3;
-              });
-              if (_currentState3 == true) {
-              } else {}
-            },
-          ),
-        ),
-        ListTile(
-          leading: Icon(Icons.home, color: Colors.red),
-          title: Text("通知栏快捷记录"),
-          subtitle: Text("开启后每次App打开将在通知栏创建一条通知用于快速记录灵感"),
-          trailing: Switch(
-            activeColor: Colors.orange,
-            value: _currentState4,
-            onChanged: (bool value) {
-              setState(() {
-                _currentState4 = !_currentState4;
-              });
-              if (_currentState4 == true) {
-              } else {}
-            },
-          ),
-        ),
-      ],
-    );
-  }
-
   _userInfoDataItem({required String data, required String name}) {
     return Container(
       //color: Colors.amber,
@@ -543,7 +426,7 @@ class _AccountPageState extends State<AccountPage> {
           ),
           Container(
             //购买的按钮
-            margin: EdgeInsets.only(top: 20, left: 16, right: 16),
+            margin: const EdgeInsets.only(top: 20, left: 16, right: 16,bottom: 20),
             width: double.infinity,
             height: 48,
             child: TextButton(
@@ -561,38 +444,38 @@ class _AccountPageState extends State<AccountPage> {
               ),
             ),
           ),
-          Center(
-              child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-                onTap: () {
-                  _controller.text = "";
-                  _focusNode.requestFocus();
-                  InputBottomSheet.oneInput(
-                      context,
-                      _controller,
-                      _focusNode,
-                      S.of(context).logout,
-                      S.of(context).logoutWarning, () async {
-                    if (_controller.text.isNotEmpty) {
-                      Navigator.pop(context);
-                      TipsDialog.wait(context, S.of(context).wait,
-                          S.of(context).loggingOut);
-                      CallBack callback = await _accountViewModel
-                          .deleteAccount(_controller.text);
-                      Navigator.pop(context);
-                      if (callback.success!) {
-                        TipsDialog.toast(context, callback.message!);
-                      } else {
-                        TipsDialog.show(
-                            context, S.of(context).error, callback.message!);
-                      }
-                    }
-                  }, obscureText: true);
-                },
-                child: Text(S.of(context).logout,
-                    style: TextStyle(color: Colors.blue))),
-          ))
+          // Center(
+          //     child: Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: GestureDetector(
+          //       onTap: () {
+          //         _controller.text = "";
+          //         _focusNode.requestFocus();
+          //         InputBottomSheet.oneInput(
+          //             context,
+          //             _controller,
+          //             _focusNode,
+          //             S.of(context).logout,
+          //             S.of(context).logoutWarning, () async {
+          //           if (_controller.text.isNotEmpty) {
+          //             Navigator.pop(context);
+          //             TipsDialog.wait(context, S.of(context).wait,
+          //                 S.of(context).loggingOut);
+          //             CallBack callback = await _accountViewModel
+          //                 .deleteAccount(_controller.text);
+          //             Navigator.pop(context);
+          //             if (callback.success!) {
+          //               TipsDialog.toast(context, callback.message!);
+          //             } else {
+          //               TipsDialog.show(
+          //                   context, S.of(context).error, callback.message!);
+          //             }
+          //           }
+          //         }, obscureText: true);
+          //       },
+          //       child: Text(S.of(context).logout,
+          //           style: TextStyle(color: Colors.blue))),
+          // ))
         ],
       ),
     );

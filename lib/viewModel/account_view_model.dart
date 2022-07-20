@@ -59,7 +59,7 @@ class AccountViewModel {
   }
 
   exit() {
-
+    _model.exit();
   }
 
   syncUserInfo() async {

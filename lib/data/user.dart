@@ -3,7 +3,6 @@ import 'package:miaodi_web/data/callback.dart';
 import 'package:miaodi_web/utils/https_util.dart';
 
 import 'user_info.dart';
-import 'dart:js' as js;
 
 /// 用户账号拥有的字段
 class User {
@@ -81,7 +80,8 @@ class User {
 
   // 获得创建时间
   String get createTime {
-    String? value = "2019-02-01 11:11:11";
+    String? value = _sharedPreferences!.createTime;
+    print("创建时间:"+value!);
     return value ?? "2019-02-01 11:11:11";
   }
 }

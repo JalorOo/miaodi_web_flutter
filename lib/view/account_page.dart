@@ -8,6 +8,7 @@ import 'package:miaodi_web/generated/l10n.dart';
 import 'package:miaodi_web/utils/time_utils.dart';
 import 'package:miaodi_web/utils/ui_utils.dart';
 import 'package:miaodi_web/viewModel/account_view_model.dart';
+import 'package:miaodi_web/viewModel/passage_view_model.dart';
 import 'package:miaodi_web/widget/input_bottom_sheet.dart';
 import 'package:miaodi_web/widget/tips_dialog.dart';
 import 'package:miaodi_web/data/user.dart';
@@ -29,6 +30,7 @@ class _AccountPageState extends State<AccountPage> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   final AccountViewModel _accountViewModel = AccountViewModel.getInstance();
+  PassageViewModel _passageViewModel = PassageViewModel.getInstance();
   User? _user;
 
   @override
@@ -117,7 +119,7 @@ class _AccountPageState extends State<AccountPage> {
   Future<void> _getUserInfo() async {
     print("获取用户信息");
     _user = await User.getInstance();
-    _passagesCount = 0;
+    _passagesCount = await _passageViewModel.queryPassage();
     setState(() {});
     // 若激活成功，则弹出说明一下
     CallBack callBack = await _accountViewModel.syncUserInfo();

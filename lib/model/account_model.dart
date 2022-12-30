@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:miaodi_web/common/constant.dart';
+import 'package:miaodi_web/data/assets_history.dart';
 import 'package:miaodi_web/data/callback.dart';
 import 'package:miaodi_web/utils/https_util.dart';
 import 'package:miaodi_web/utils/time_utils.dart';
@@ -162,7 +163,7 @@ class AccountModel {
   Future<CallBack> getPayLink(String token) async {
     Options options = Options(headers: {'token': token});
     CallBack callBack = await HttpsUtil.getResponse(
-        "${Constant.ipTest}${Constant.purchase}${Constant.ezrevenuePay}",
+        "${Constant.ip}${Constant.purchase}${Constant.ezrevenuePay}",
         options: options);
     print(callBack.message!);
     return callBack;
@@ -171,7 +172,7 @@ class AccountModel {
   Future<CallBack> ensurePay(String token) async {
     Options options = Options(headers: {'token': token});
     CallBack callBack = await HttpsUtil.getResponse(
-        "${Constant.ipTest}${Constant.purchase}${Constant.ezrevenuePay}${Constant.ensure}",
+        "${Constant.ip}${Constant.purchase}${Constant.ezrevenuePay}${Constant.ensure}",
         options: options);
     print(callBack.message!);
     return callBack;
@@ -180,5 +181,32 @@ class AccountModel {
   Future<void> exit() async {
     await HttpsUtil.getResponse("http://localhost:10380/userExit");
     // print('拿到信息=>${result.success!}');
+  }
+
+  Future<List<AssetsHistory>> getAssetsHistory(String? token) async {
+    Options options = Options(headers: {'token': token});
+    CallBack callBack = await HttpsUtil.getResponse(
+        "${Constant.ip}${Constant.user}${Constant.assetsHistory}",
+        options: options);
+    List<AssetsHistory> list = [];
+    if (callBack.success!) {
+      var jsonList = callBack.data!['history'] as List;
+      list = jsonList.map((m) => new AssetsHistory.fromJson(m)).toList();
+    }
+    return list;
+  }
+
+  // 转赠喵点
+  transferAssets(password, anotherUsername, count,String? token) async {
+    Options options = Options(headers: {'token': token});
+    Map<String, String> args = HashMap();
+    args["password"] = password;
+    args["anotherUsername"] = anotherUsername;
+    args["count"] = count;
+    CallBack callBack = await HttpsUtil.postResponseWithHeaderAndArgus(
+        Constant.ip + Constant.user + Constant.transfer + Constant.assets,
+        args,options: options
+    );
+    return callBack;
   }
 }

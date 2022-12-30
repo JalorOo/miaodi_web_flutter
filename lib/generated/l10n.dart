@@ -540,21 +540,21 @@ class S {
     );
   }
 
-  /// `Exit`
-  String get accountExit {
-    return Intl.message(
-      'Exit',
-      name: 'accountExit',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Logout`
   String get logout {
     return Intl.message(
       'Logout',
       name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete account`
+  String get accountDelete {
+    return Intl.message(
+      'Delete account',
+      name: 'accountDelete',
       desc: '',
       args: [],
     );
@@ -1260,10 +1260,10 @@ class S {
     );
   }
 
-  /// `You have not configured the uploading picture function, please log in and configure it in the member function`
+  /// `You have not configured the uploading picture function, please go to settings page and configure it`
   String get noPicBedSetting {
     return Intl.message(
-      'You have not configured the uploading picture function, please log in and configure it in the member function',
+      'You have not configured the uploading picture function, please go to settings page and configure it',
       name: 'noPicBedSetting',
       desc: '',
       args: [],
@@ -1380,10 +1380,10 @@ class S {
     );
   }
 
-  /// `Total {num} characters`
+  /// `Words: {num}`
   String passageContentLength(Object num) {
     return Intl.message(
-      'Total $num characters',
+      'Words: $num',
       name: 'passageContentLength',
       desc: '',
       args: [num],
@@ -1530,13 +1530,13 @@ class S {
     );
   }
 
-  /// `The article has been migrated to 「{chapter}」 of 「{book}」`
-  String move2ChapterSuccessfully(Object chapter, Object book) {
+  /// `The article has been migrated to 「{book}」-「{chapter}」`
+  String move2ChapterSuccessfully(Object book, Object chapter) {
     return Intl.message(
-      'The article has been migrated to 「$chapter」 of 「$book」',
+      'The article has been migrated to 「$book」-「$chapter」',
       name: 'move2ChapterSuccessfully',
       desc: '',
-      args: [chapter, book],
+      args: [book, chapter],
     );
   }
 
@@ -2425,6 +2425,176 @@ class S {
     return Intl.message(
       'You can get code by activities',
       name: 'getCodeTips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My MBits`
+  String get myMBit {
+    return Intl.message(
+      'My MBits',
+      name: 'myMBit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History of MBits`
+  String get mBitDetail {
+    return Intl.message(
+      'History of MBits',
+      name: 'mBitDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No more data`
+  String get noMoreData {
+    return Intl.message(
+      'No more data',
+      name: 'noMoreData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transferring`
+  String get transferring {
+    return Intl.message(
+      'Transferring',
+      name: 'transferring',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password`
+  String get passwordConfirmed {
+    return Intl.message(
+      'Confirm password',
+      name: 'passwordConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How many MBits to transfer`
+  String get transferAssetsCount {
+    return Intl.message(
+      'How many MBits to transfer',
+      name: 'transferAssetsCount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Who`
+  String get whoToTransfer {
+    return Intl.message(
+      'Who',
+      name: 'whoToTransfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MBits of transfer`
+  String get assetsTransfer {
+    return Intl.message(
+      'MBits of transfer',
+      name: 'assetsTransfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username that transfer to`
+  String get transferToAnother {
+    return Intl.message(
+      'Username that transfer to',
+      name: 'transferToAnother',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy VIP`
+  String get buyVIP {
+    return Intl.message(
+      'Buy VIP',
+      name: 'buyVIP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get`
+  String get goToLearn {
+    return Intl.message(
+      'Get',
+      name: 'goToLearn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `>>> How to get and use?`
+  String get assetsTips {
+    return Intl.message(
+      '>>> How to get and use?',
+      name: 'assetsTips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rest`
+  String get restOfAssets {
+    return Intl.message(
+      'Rest',
+      name: 'restOfAssets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Getting AppInfo`
+  String get getAppInfo {
+    return Intl.message(
+      'Getting AppInfo',
+      name: 'getAppInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get editPassage {
+    return Intl.message(
+      'Edit',
+      name: 'editPassage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Only settings this passage after save`
+  String get editPassageSettingsTips {
+    return Intl.message(
+      'Only settings this passage after save',
+      name: 'editPassageSettingsTips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check the user name and credit limit of the transfer again before entering. Once the transfer is made, cancellation is no longer supported`
+  String get assetsTransferringTips {
+    return Intl.message(
+      'Please check the user name and credit limit of the transfer again before entering. Once the transfer is made, cancellation is no longer supported',
+      name: 'assetsTransferringTips',
       desc: '',
       args: [],
     );

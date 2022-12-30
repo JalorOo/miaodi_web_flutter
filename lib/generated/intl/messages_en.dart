@@ -34,10 +34,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m5(book) =>
       "The article has been migrated to the book 「${book}」";
 
-  static String m6(chapter, book) =>
-      "The article has been migrated to 「${chapter}」 of 「${book}」";
+  static String m6(book, chapter) =>
+      "The article has been migrated to 「${book}」-「${chapter}」";
 
-  static String m7(num) => "Total ${num} characters";
+  static String m7(num) => "Words: ${num}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -48,7 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "aboutMembership": MessageLookupByLibrary.simpleMessage(
             "\"Know more about membership\""),
         "account": MessageLookupByLibrary.simpleMessage("Account"),
-        "accountExit": MessageLookupByLibrary.simpleMessage("Exit"),
+        "accountDelete": MessageLookupByLibrary.simpleMessage("Delete account"),
         "accountId": MessageLookupByLibrary.simpleMessage("Id"),
         "activateByCode":
             MessageLookupByLibrary.simpleMessage("Exchange Code Exchange"),
@@ -73,11 +73,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "apply": MessageLookupByLibrary.simpleMessage("Apply"),
         "applying": MessageLookupByLibrary.simpleMessage("Applying"),
         "assets": MessageLookupByLibrary.simpleMessage("M-Bits"),
+        "assetsTips":
+            MessageLookupByLibrary.simpleMessage(">>> How to get and use?"),
+        "assetsTransfer":
+            MessageLookupByLibrary.simpleMessage("MBits of transfer"),
+        "assetsTransferringTips": MessageLookupByLibrary.simpleMessage(
+            "Please check the user name and credit limit of the transfer again before entering. Once the transfer is made, cancellation is no longer supported"),
         "author": MessageLookupByLibrary.simpleMessage("Author"),
         "basicInfo": MessageLookupByLibrary.simpleMessage("Info"),
         "book": MessageLookupByLibrary.simpleMessage("Book"),
         "bookOperation": MessageLookupByLibrary.simpleMessage("Book Operation"),
         "buyNow": MessageLookupByLibrary.simpleMessage("Buy Now"),
+        "buyVIP": MessageLookupByLibrary.simpleMessage("Buy VIP"),
         "buying": MessageLookupByLibrary.simpleMessage(
             "Please be patient, in-app purchase is in progress, if there is no response for a long time, please try again"),
         "canNotNull": MessageLookupByLibrary.simpleMessage(
@@ -141,6 +148,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "This delete operation is irreversible, do you want to continue?"),
         "developer": MessageLookupByLibrary.simpleMessage("developer"),
         "dollar": MessageLookupByLibrary.simpleMessage(" dollar "),
+        "editPassage": MessageLookupByLibrary.simpleMessage("Edit"),
+        "editPassageSettingsTips": MessageLookupByLibrary.simpleMessage(
+            "Only settings this passage after save"),
         "editSettings": MessageLookupByLibrary.simpleMessage("Edit Settings"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailLogin":
@@ -175,10 +185,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "function": MessageLookupByLibrary.simpleMessage("Function"),
         "functionTips": MessageLookupByLibrary.simpleMessage(
             "only support picture bed now"),
+        "getAppInfo": MessageLookupByLibrary.simpleMessage("Getting AppInfo"),
         "getCodeTips": MessageLookupByLibrary.simpleMessage(
             "You can get code by activities"),
         "getVerifyCode":
             MessageLookupByLibrary.simpleMessage("Get Verification Code"),
+        "goToLearn": MessageLookupByLibrary.simpleMessage("Get"),
         "grant": MessageLookupByLibrary.simpleMessage("Grant"),
         "hadPaid": MessageLookupByLibrary.simpleMessage("Already purchased?"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello :)"),
@@ -222,6 +234,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "logoutWarning": MessageLookupByLibrary.simpleMessage(
             "Once you log out, it cannot be recovered. If you confirm, please enter the account password again"),
+        "mBitDetail": MessageLookupByLibrary.simpleMessage("History of MBits"),
         "meansAgree": MessageLookupByLibrary.simpleMessage("meant agree"),
         "membership": MessageLookupByLibrary.simpleMessage("Membership"),
         "membershipActivated":
@@ -248,6 +261,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "multiDevice": MessageLookupByLibrary.simpleMessage("Multi-Device"),
         "multiDeviceIntro": MessageLookupByLibrary.simpleMessage(
             "One account can log in to multiple devices at the same time"),
+        "myMBit": MessageLookupByLibrary.simpleMessage("My MBits"),
         "myPrivilege": MessageLookupByLibrary.simpleMessage("Privilege"),
         "need2Activate": MessageLookupByLibrary.simpleMessage(
             "Please activate the membership to use this function"),
@@ -259,8 +273,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "noData": MessageLookupByLibrary.simpleMessage("No data yet :)"),
         "noDataAndTry": MessageLookupByLibrary.simpleMessage(
             "No data or fail to load, click to retry"),
+        "noMoreData": MessageLookupByLibrary.simpleMessage("No more data"),
         "noPicBedSetting": MessageLookupByLibrary.simpleMessage(
-            "You have not configured the uploading picture function, please log in and configure it in the member function"),
+            "You have not configured the uploading picture function, please go to settings page and configure it"),
         "noneCanRecover": MessageLookupByLibrary.simpleMessage(
             "There are currently no recoverable purchases"),
         "norm": MessageLookupByLibrary.simpleMessage("Norm"),
@@ -274,6 +289,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "passageSettings":
             MessageLookupByLibrary.simpleMessage("Post Settings"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordConfirmed":
+            MessageLookupByLibrary.simpleMessage("Confirm password"),
         "payRecovery":
             MessageLookupByLibrary.simpleMessage("Recovery Purchases"),
         "pinError": MessageLookupByLibrary.simpleMessage("PIN error"),
@@ -309,6 +326,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Registration failed"),
         "registering": MessageLookupByLibrary.simpleMessage("Registering"),
         "remindLater": MessageLookupByLibrary.simpleMessage("Remind later"),
+        "restOfAssets": MessageLookupByLibrary.simpleMessage("Rest"),
         "safety": MessageLookupByLibrary.simpleMessage("Safety"),
         "saidPreview": MessageLookupByLibrary.simpleMessage("Said preview"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
@@ -362,6 +380,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "tooMuchText": MessageLookupByLibrary.simpleMessage(
             "Too much words, please simply it!"),
         "tools": MessageLookupByLibrary.simpleMessage("Tools"),
+        "transferAssetsCount":
+            MessageLookupByLibrary.simpleMessage("How many MBits to transfer"),
+        "transferToAnother":
+            MessageLookupByLibrary.simpleMessage("Username that transfer to"),
+        "transferring": MessageLookupByLibrary.simpleMessage("Transferring"),
         "unShare": MessageLookupByLibrary.simpleMessage("UnShare"),
         "unShareTips": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to unshare?"),
@@ -393,6 +416,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcome": MessageLookupByLibrary.simpleMessage(
             "Hello friends, welcome to use Miaodi iOS, please be sure to agree to the user agreement and privacy policy below before use, you can click to view it :)"),
         "welcomePropose": MessageLookupByLibrary.simpleMessage(
-            "Welcome to give us new inspiration")
+            "Welcome to give us new inspiration"),
+        "whoToTransfer": MessageLookupByLibrary.simpleMessage("Who")
       };
 }

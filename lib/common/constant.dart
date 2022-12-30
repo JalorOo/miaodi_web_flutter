@@ -4,7 +4,7 @@ class Constant{
 
   static String webSocketIp = "wss://api.libv.cc/miaodiss/webSocket";
 
-  static String web = "https://www.miaodiapp.com";
+  static String web = "https://libv.miaodiapp.com";
 
   static String query = "/queryV1";
 
@@ -63,4 +63,10 @@ class Constant{
   static var ipTest = "http://localhost:8186";
 
   static var ensure = "/ensure";
+
+  static var assetsHistory = "/assetsHistoryV1";
+
+  static String assets = "/assets";
+
+  static String transfer = "/transfer";
 }

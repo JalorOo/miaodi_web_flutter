@@ -39,6 +39,10 @@ class User {
     return username == null ? "" : username;
   }
 
+  set username(String username) {
+    HttpsUtil.postResponseWithHeaderAndJson("http://localhost:10380/update/username",{"username":username});
+  }
+
   /// 用户令牌 [token]
 
   String get token {
@@ -46,11 +50,19 @@ class User {
     return token == null ? "" : token;
   }
 
+  set token(String token) {
+    HttpsUtil.postResponseWithHeaderAndJson("http://localhost:10380/update/token",{"token":token});
+  }
+
   /// 用户邮箱 [email]
 
   String get email {
     String? value = _sharedPreferences!.email;
     return value == null ? "" : value;
+  }
+
+  set email(String email) {
+    HttpsUtil.postResponseWithHeaderAndJson("http://localhost:10380/update/email",{"email":email});
   }
 
   /// 用户id [objectId]

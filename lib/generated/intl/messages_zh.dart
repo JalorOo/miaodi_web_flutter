@@ -32,9 +32,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m5(book) => "已把文章迁移到书本「${book}」中";
 
-  static String m6(chapter, book) => "已把文章迁移到「${book}」的「${chapter}」中";
+  static String m6(book, chapter) => "已把文章迁移到「${book}」的「${chapter}」中";
 
-  static String m7(num) => "共 ${num} 字";
+  static String m7(num) => "字数: ${num}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -44,7 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "aboutMembership":
             MessageLookupByLibrary.simpleMessage("\"更多高级功能使用权\""),
         "account": MessageLookupByLibrary.simpleMessage("个人中心"),
-        "accountExit": MessageLookupByLibrary.simpleMessage("退出账号"),
+        "accountDelete": MessageLookupByLibrary.simpleMessage("注销账号"),
         "accountId": MessageLookupByLibrary.simpleMessage("账号id"),
         "activateByCode": MessageLookupByLibrary.simpleMessage("兑换码兑换"),
         "activated": m0,
@@ -63,11 +63,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "apply": MessageLookupByLibrary.simpleMessage("提交"),
         "applying": MessageLookupByLibrary.simpleMessage("正在提交中"),
         "assets": MessageLookupByLibrary.simpleMessage("喵点"),
+        "assetsTips": MessageLookupByLibrary.simpleMessage(">>> 喵点怎么来? 怎么花?"),
+        "assetsTransfer": MessageLookupByLibrary.simpleMessage("转账喵点"),
+        "assetsTransferringTips": MessageLookupByLibrary.simpleMessage(
+            "请输入前再次核对转赠去向的用户名以及喵点额度，一旦转账，将不再支持取消"),
         "author": MessageLookupByLibrary.simpleMessage("作者"),
         "basicInfo": MessageLookupByLibrary.simpleMessage("基本信息"),
         "book": MessageLookupByLibrary.simpleMessage("书本"),
         "bookOperation": MessageLookupByLibrary.simpleMessage("书本操作"),
         "buyNow": MessageLookupByLibrary.simpleMessage("立即购买"),
+        "buyVIP": MessageLookupByLibrary.simpleMessage("购买会员"),
         "buying": MessageLookupByLibrary.simpleMessage(
             "请耐心等待, 正在进行应用内购买, 若很久没反应，请重新再试"),
         "canNotNull":
@@ -118,6 +123,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("该删除操作不可逆，是否继续？"),
         "developer": MessageLookupByLibrary.simpleMessage("开发者"),
         "dollar": MessageLookupByLibrary.simpleMessage("元"),
+        "editPassage": MessageLookupByLibrary.simpleMessage("编辑文章"),
+        "editPassageSettingsTips":
+            MessageLookupByLibrary.simpleMessage("文章有内容时才能进行设置噢"),
         "editSettings": MessageLookupByLibrary.simpleMessage("编辑设置"),
         "email": MessageLookupByLibrary.simpleMessage("邮箱名"),
         "emailLogin": MessageLookupByLibrary.simpleMessage("使用邮箱名登录"),
@@ -144,8 +152,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetPassword": MessageLookupByLibrary.simpleMessage("忘记密码？"),
         "function": MessageLookupByLibrary.simpleMessage("功能"),
         "functionTips": MessageLookupByLibrary.simpleMessage("管理会员功能，目前仅支持图床"),
+        "getAppInfo": MessageLookupByLibrary.simpleMessage("正在拉取App信息"),
         "getCodeTips": MessageLookupByLibrary.simpleMessage("您可参与活动获取激活码"),
         "getVerifyCode": MessageLookupByLibrary.simpleMessage("获取验证码"),
+        "goToLearn": MessageLookupByLibrary.simpleMessage("前往了解"),
         "grant": MessageLookupByLibrary.simpleMessage("同意并授权"),
         "hadPaid": MessageLookupByLibrary.simpleMessage("已经购买?"),
         "hello": MessageLookupByLibrary.simpleMessage("你好鸭:)"),
@@ -174,9 +184,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "loggingOut": MessageLookupByLibrary.simpleMessage("正在申请注销账号中"),
         "login": MessageLookupByLibrary.simpleMessage("登录"),
         "loginOrRegister": MessageLookupByLibrary.simpleMessage("登录/注册"),
-        "logout": MessageLookupByLibrary.simpleMessage("注销账号"),
+        "logout": MessageLookupByLibrary.simpleMessage("退出账号"),
         "logoutWarning":
             MessageLookupByLibrary.simpleMessage("一旦注销，即无法恢复，若确认请再输入一次账号密码"),
+        "mBitDetail": MessageLookupByLibrary.simpleMessage("喵点明细"),
         "meansAgree": MessageLookupByLibrary.simpleMessage("代表同意"),
         "membership": MessageLookupByLibrary.simpleMessage("高级会员"),
         "membershipActivated": MessageLookupByLibrary.simpleMessage("会员购买"),
@@ -196,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "multiDevice": MessageLookupByLibrary.simpleMessage("多设备"),
         "multiDeviceIntro":
             MessageLookupByLibrary.simpleMessage("一个账号可同时登录多个设备"),
+        "myMBit": MessageLookupByLibrary.simpleMessage("我的喵点"),
         "myPrivilege": MessageLookupByLibrary.simpleMessage("我的特权"),
         "need2Activate": MessageLookupByLibrary.simpleMessage("请激活会员后使用该功能"),
         "needActivate": MessageLookupByLibrary.simpleMessage("未激活会员"),
@@ -204,8 +216,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "nextTime": MessageLookupByLibrary.simpleMessage("下次一定"),
         "noData": MessageLookupByLibrary.simpleMessage("还没有数据哦:)"),
         "noDataAndTry": MessageLookupByLibrary.simpleMessage("没有数据或加载失败, 点击重试"),
+        "noMoreData": MessageLookupByLibrary.simpleMessage("没有更多数据了"),
         "noPicBedSetting":
-            MessageLookupByLibrary.simpleMessage("您还未配置好上传图片功能，请登录后到会员功能中配置"),
+            MessageLookupByLibrary.simpleMessage("您还未配置好上传图片功能，请到App中的设置中进行配置"),
         "noneCanRecover": MessageLookupByLibrary.simpleMessage("目前没有可恢复的购买项目"),
         "norm": MessageLookupByLibrary.simpleMessage("规格"),
         "ok": MessageLookupByLibrary.simpleMessage("好的"),
@@ -217,6 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passageNum": MessageLookupByLibrary.simpleMessage("文章数"),
         "passageSettings": MessageLookupByLibrary.simpleMessage("文章设置"),
         "password": MessageLookupByLibrary.simpleMessage("密码"),
+        "passwordConfirmed": MessageLookupByLibrary.simpleMessage("密码确认"),
         "payRecovery": MessageLookupByLibrary.simpleMessage("恢复购买"),
         "pinError": MessageLookupByLibrary.simpleMessage("6位密码错误"),
         "pinInput": MessageLookupByLibrary.simpleMessage("请输入密码"),
@@ -243,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "registerUnsuccessfully": MessageLookupByLibrary.simpleMessage("注册失败"),
         "registering": MessageLookupByLibrary.simpleMessage("注册中"),
         "remindLater": MessageLookupByLibrary.simpleMessage("稍后提醒"),
+        "restOfAssets": MessageLookupByLibrary.simpleMessage("喵点余额"),
         "safety": MessageLookupByLibrary.simpleMessage("安全"),
         "saidPreview": MessageLookupByLibrary.simpleMessage("一言预览"),
         "save": MessageLookupByLibrary.simpleMessage("保存"),
@@ -284,6 +299,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "tooMuchText":
             MessageLookupByLibrary.simpleMessage("小伙伴提交的字数太多啦，再精简一下吧"),
         "tools": MessageLookupByLibrary.simpleMessage("工具"),
+        "transferAssetsCount": MessageLookupByLibrary.simpleMessage("转赠喵点额"),
+        "transferToAnother": MessageLookupByLibrary.simpleMessage("转赠他人"),
+        "transferring": MessageLookupByLibrary.simpleMessage("转赠中"),
         "unShare": MessageLookupByLibrary.simpleMessage("取消分享"),
         "unShareTips": MessageLookupByLibrary.simpleMessage("您确定取消分享吗？"),
         "unSharing": MessageLookupByLibrary.simpleMessage("正在取消分享中"),
@@ -307,6 +325,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "website": MessageLookupByLibrary.simpleMessage("官网"),
         "welcome": MessageLookupByLibrary.simpleMessage(
             "小伙伴您好，欢迎使用喵滴iOS，使用前请务必同意下方的用户协议与隐私政策,可以点击查看的哦:)"),
-        "welcomePropose": MessageLookupByLibrary.simpleMessage("欢迎给我们新灵感")
+        "welcomePropose": MessageLookupByLibrary.simpleMessage("欢迎给我们新灵感"),
+        "whoToTransfer": MessageLookupByLibrary.simpleMessage("收款人用户名")
       };
 }

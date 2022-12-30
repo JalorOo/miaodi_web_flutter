@@ -4,15 +4,19 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:miaodi_web/common/style.dart';
 import 'package:miaodi_web/data/callback.dart';
+import 'package:miaodi_web/data/user.dart';
 import 'package:miaodi_web/generated/l10n.dart';
+import 'package:miaodi_web/view/edit_information_page.dart';
 import 'package:miaodi_web/utils/time_utils.dart';
 import 'package:miaodi_web/utils/ui_utils.dart';
 import 'package:miaodi_web/viewModel/account_view_model.dart';
 import 'package:miaodi_web/viewModel/passage_view_model.dart';
 import 'package:miaodi_web/widget/input_bottom_sheet.dart';
+import 'package:miaodi_web/widget/settings_item.dart';
 import 'package:miaodi_web/widget/tips_dialog.dart';
-import 'package:miaodi_web/data/user.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'assets_page.dart';
 
 class AccountPage extends StatefulWidget {
   @override
@@ -27,9 +31,12 @@ class _AccountPageState extends State<AccountPage> {
   bool _currentState3 = false;
   bool _currentState4 = false;
   bool chooseClipBoard = false;
-  final TextEditingController _controller = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
-  final AccountViewModel _accountViewModel = AccountViewModel.getInstance();
+  TextEditingController _controller = TextEditingController();
+  TextEditingController _controller2 = TextEditingController();
+  TextEditingController _controller3 = TextEditingController();
+  TextEditingController _verifyController = TextEditingController();
+  FocusNode _focusNode = FocusNode();
+  AccountViewModel _accountViewModel = AccountViewModel.getInstance();
   PassageViewModel _passageViewModel = PassageViewModel.getInstance();
   User? _user;
 
@@ -59,17 +66,17 @@ class _AccountPageState extends State<AccountPage> {
         //   systemOverlayStyle: UiUtils.isDarkMode(context)
         //       ? SystemUiOverlayStyle.light
         //       : SystemUiOverlayStyle.dark,
-        //   foregroundColor: Colors.black,
         //   centerTitle: true,
         //   backgroundColor: Colors.transparent,
         //   elevation: 0,
         //   title: Text(
         //     S.of(context).account,
         //   ),
-        //   actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.close))],
         // ),
         body: LayoutBuilder(
           builder: (_, constraints) {
+            // 根据不同的屏幕进行适配
+            print(constraints.maxHeight);
             // 大屏幕，则使用Expanded
             if (constraints.maxHeight > 600) {
               return Column(
@@ -117,7 +124,6 @@ class _AccountPageState extends State<AccountPage> {
   int _passagesCount = 0;
 
   Future<void> _getUserInfo() async {
-    print("获取用户信息");
     _user = await User.getInstance();
     _passagesCount = await _passageViewModel.queryPassage();
     setState(() {});
@@ -129,7 +135,124 @@ class _AccountPageState extends State<AccountPage> {
     setState(() {});
   }
 
-  _userInfoDataItem({required String data, required String name}) {
+  unSupportItem() {
+    ListView(
+      children: [
+        Divider(
+          height: 2,
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 68, top: 20, bottom: 6),
+          child: Text(
+            S.of(context).seniorMemberServices,
+            style: TextStyle(
+              color: Colors.orange,
+              fontSize: 13,
+            ),
+          ),
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.wb_cloudy_rounded,
+            color: Colors.indigoAccent,
+          ),
+          title: Text("拉取文章备份"),
+          subtitle: Text("从云端设定的云端拉取数据"),
+          onTap: () {},
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.refresh,
+            color: Colors.lightGreen,
+          ),
+          title: Text("自动从云拉取"),
+          subtitle: Text("及时同步云端到本地。默认使用喵滴的云服务。若启动了WebDav,则使用WebDav"),
+          trailing: Switch(
+            activeColor: Colors.orange,
+            value: _currentState1,
+            onChanged: (bool value) {
+              setState(() {
+                _currentState1 = !_currentState1;
+              });
+              if (_currentState1 == true) {
+              } else {}
+            },
+          ),
+        ),
+        ListTile(
+          leading: SizedBox(),
+          title: Text("拉取Todo备份"),
+          onTap: () {},
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.event,
+            color: Colors.grey,
+          ),
+          title: Text("剪贴板记录"),
+          subtitle: Text("开启后,App可读取剪贴板进行文本导入"),
+          trailing: Switch(
+            activeColor: Colors.orange,
+            value: _currentState2,
+            onChanged: (bool value) {
+              setState(() {
+                _currentState2 = !_currentState2;
+              });
+              if (_currentState2 == true) {
+                chooseClipBoard = true;
+              } else {
+                chooseClipBoard = false;
+              }
+            },
+          ),
+        ),
+        ListTile(
+          leading: SizedBox(),
+          title: Text(
+            "剪贴板导入询问",
+            style: TextStyle(
+              color: chooseClipBoard ? Colors.black : Colors.grey,
+            ),
+          ),
+          subtitle: Text(
+            "开启后,每次从剪贴板导入期间会进行询问",
+            style: TextStyle(
+              color: chooseClipBoard ? Colors.black : Colors.grey,
+            ),
+          ),
+          trailing: Switch(
+            activeColor: Colors.orange,
+            value: _currentState3,
+            onChanged: (bool value) {
+              setState(() {
+                _currentState3 = !_currentState3;
+              });
+              if (_currentState3 == true) {
+              } else {}
+            },
+          ),
+        ),
+        ListTile(
+          leading: Icon(Icons.home, color: Colors.red),
+          title: Text("通知栏快捷记录"),
+          subtitle: Text("开启后每次App打开将在通知栏创建一条通知用于快速记录灵感"),
+          trailing: Switch(
+            activeColor: Colors.orange,
+            value: _currentState4,
+            onChanged: (bool value) {
+              setState(() {
+                _currentState4 = !_currentState4;
+              });
+              if (_currentState4 == true) {
+              } else {}
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _userInfoDataItem({required String data, required String name}) {
     return Container(
       //color: Colors.amber,
       height: 60,
@@ -176,8 +299,8 @@ class _AccountPageState extends State<AccountPage> {
                     _user == null
                         ? S.of(context).loading
                         : _user!.vip
-                            ? S.of(context).membership
-                            : S.of(context).needActivate,
+                        ? S.of(context).membership
+                        : S.of(context).needActivate,
                     style: TextStyle(color: Colors.grey),
                   ),
                 ],
@@ -186,9 +309,9 @@ class _AccountPageState extends State<AccountPage> {
           ),
           GestureDetector(
             onTap: () {
-              // Navigator.push(context, CupertinoPageRoute(builder: (context) {
-              //   return EditInformationPage(user: _user!);
-              // }));
+              Navigator.push(context, CupertinoPageRoute(builder: (context) {
+                return EditInformationPage(user: _user!);
+              }));
             },
             child: Container(
               width: 80,
@@ -233,11 +356,18 @@ class _AccountPageState extends State<AccountPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _userInfoDataItem(
-              data: _user == null
-                  ? S.of(context).loading
-                  : (_user!.assets).toString(),
-              name: S.of(context).assets),
+          GestureDetector(
+            onTap: (){
+              Navigator.push(context, CupertinoPageRoute(builder: (context){
+                return AssetsPage();
+              }));
+            },
+            child: _userInfoDataItem(
+                data: _user == null
+                    ? S.of(context).loading
+                    : (_user!.assets).toString(),
+                name: S.of(context).assets),
+          ),
           _userInfoDataItem(
               data: "$_passagesCount", name: S.of(context).passageNum),
           _userInfoDataItem(
@@ -304,10 +434,10 @@ class _AccountPageState extends State<AccountPage> {
                       _user == null
                           ? S.of(context).loading
                           : _user!.vip
-                              ? _user!.expiredTime == ""
-                                  ? S.of(context).foreverMembership
-                                  : S.of(context).activated(_user!.expiredTime)
-                              : S.of(context).aboutMembership,
+                          ? _user!.expiredTime == ""
+                          ? S.of(context).foreverMembership
+                          : S.of(context).activated(_user!.expiredTime)
+                          : S.of(context).aboutMembership,
                       style: TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                   ],
@@ -319,9 +449,9 @@ class _AccountPageState extends State<AccountPage> {
               padding: EdgeInsets.fromLTRB(10, 4, 10, 4),
               decoration: BoxDecoration(
                   color:
-                      _user == null || !_user!.vip || _user!.expiredTime != ""
-                          ? thirdColor
-                          : Colors.orange,
+                  _user == null || !_user!.vip || _user!.expiredTime != ""
+                      ? thirdColor
+                      : Colors.orange,
                   borderRadius: BorderRadius.all(
                     Radius.circular(16),
                   )),
@@ -329,10 +459,10 @@ class _AccountPageState extends State<AccountPage> {
                 _user == null
                     ? S.of(context).loading
                     : _user!.vip
-                        ? _user!.expiredTime == ""
-                            ? S.of(context).myPrivilege
-                            : S.of(context).continueVIP
-                        : S.of(context).purchase,
+                    ? _user!.expiredTime == ""
+                    ? S.of(context).myPrivilege
+                    : S.of(context).continueVIP
+                    : S.of(context).purchase,
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -378,7 +508,7 @@ class _AccountPageState extends State<AccountPage> {
             trailing: Text(
               _user == null
                   ? S.of(context).loading
-                  : (_user!.wordCount / 1000).toString(),
+                  : (_user!.wordCount ~/ 1000).toString(),
               style: TextStyle(color: Colors.grey),
             ),
             onTap: () {},
@@ -428,14 +558,14 @@ class _AccountPageState extends State<AccountPage> {
           ),
           Container(
             //购买的按钮
-            margin: const EdgeInsets.only(top: 20, left: 16, right: 16,bottom: 20),
+            margin: EdgeInsets.only(top: 20, left: 16, right: 16),
             width: double.infinity,
             height: 48,
             child: TextButton(
               onPressed: () async {
                 await _accountViewModel.exit();
               },
-              child: Text(S.of(context).accountExit),
+              child: Text(S.of(context).logout),
               style: TextButton.styleFrom(
                 primary: Colors.white,
                 padding: EdgeInsets.symmetric(horizontal: 0.0),
@@ -446,38 +576,38 @@ class _AccountPageState extends State<AccountPage> {
               ),
             ),
           ),
-          // Center(
-          //     child: Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: GestureDetector(
-          //       onTap: () {
-          //         _controller.text = "";
-          //         _focusNode.requestFocus();
-          //         InputBottomSheet.oneInput(
-          //             context,
-          //             _controller,
-          //             _focusNode,
-          //             S.of(context).logout,
-          //             S.of(context).logoutWarning, () async {
-          //           if (_controller.text.isNotEmpty) {
-          //             Navigator.pop(context);
-          //             TipsDialog.wait(context, S.of(context).wait,
-          //                 S.of(context).loggingOut);
-          //             CallBack callback = await _accountViewModel
-          //                 .deleteAccount(_controller.text);
-          //             Navigator.pop(context);
-          //             if (callback.success!) {
-          //               TipsDialog.toast(context, callback.message!);
-          //             } else {
-          //               TipsDialog.show(
-          //                   context, S.of(context).error, callback.message!);
-          //             }
-          //           }
-          //         }, obscureText: true);
-          //       },
-          //       child: Text(S.of(context).logout,
-          //           style: TextStyle(color: Colors.blue))),
-          // ))
+          Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                    onTap: () {
+                      _controller.text = "";
+                      _focusNode.requestFocus();
+                      InputBottomSheet.oneInput(
+                          context,
+                          _controller,
+                          _focusNode,
+                          S.of(context).accountDelete,
+                          S.of(context).logoutWarning, () async {
+                        if (_controller.text.isNotEmpty) {
+                          Navigator.pop(context);
+                          TipsDialog.wait(context, S.of(context).wait,
+                              S.of(context).loggingOut);
+                          CallBack callback = await _accountViewModel
+                              .deleteAccount(_controller.text);
+                          Navigator.pop(context);
+                          if (callback.success!) {
+                            TipsDialog.toast(context, callback.message!);
+                          } else {
+                            TipsDialog.show(
+                                context, S.of(context).error, callback.message!);
+                          }
+                        }
+                      }, obscureText: true);
+                    },
+                    child: Text(S.of(context).accountDelete,
+                        style: TextStyle(color: Colors.blue))),
+              ))
         ],
       ),
     );

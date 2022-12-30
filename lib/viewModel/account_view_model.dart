@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:miaodi_web/data/assets_history.dart';
 import 'package:miaodi_web/model/account_model.dart';
 import 'package:miaodi_web/common/event_name.dart';
 import 'package:miaodi_web/data/callback.dart';
@@ -49,17 +50,79 @@ class AccountViewModel {
     return callBack;
   }
 
+  register(var username, password, email, verifyCode) async {
+    print(verifyCode);
+    CallBack callback =
+    await _model.register(username, password, email, verifyCode);
+    eventBus.emit(EventName.registerState, callback);
+  }
+
   registerVerify(var email) async {
     CallBack callBack = await _model.registerVerify(email);
     return callBack;
   }
 
-  deleteAccount(String text) {
-
+  deleteAccount(String text) async {
+    User user = await User.getInstance();
+    if ("" == user.token) {
+      print('没有用户');
+      return CallBack(success: false, message: "用户未登录，请重新登录");
+    }
+    CallBack callback = await _model.deleteAccount(user.token, text);
+    if (callback.success!) {
+      exit();
+    }
+    return callback;
   }
 
   exit() {
     _model.exit();
+  }
+
+  /// 更新密码
+  Future<CallBack> updatePassword(var oldPassword, newPassword) async {
+    User user = await User.getInstance();
+    if ("" == user.token) {
+      print('没有用户');
+      return CallBack(success: false, message: "用户未登录，请重新登录");
+    }
+    CallBack callback =
+    await _model.updatePassword(user.token, oldPassword, newPassword);
+    if (callback.success!) {
+      // 若登录成功
+      //存储信息
+      User user = await User.getInstance();
+      user.token = callback.data!["token"];
+    }
+    return callback;
+  }
+
+  /// 更新用户名
+  Future<CallBack> updateUsername(var username) async {
+    User user = await User.getInstance();
+    if ("" == user.token) {
+      print('没有用户');
+      return CallBack(success: false, message: "用户未登录，请重新登录");
+    }
+    CallBack callback = await _model.updateUsername(user.token, username);
+    if (callback.success!) {
+      user.username = username;
+    }
+    return callback;
+  }
+
+  /// 更新邮箱
+  Future<CallBack> updateEmail(var email, verifyCode) async {
+    User user = await User.getInstance();
+    if ("" == user.token) {
+      print('没有用户');
+      return CallBack(success: false, message: "用户未登录，请重新登录");
+    }
+    CallBack callback = await _model.updateEmail(user.token, email, verifyCode);
+    if (callback.success!) {
+      user.email = email;
+    }
+    return callback;
   }
 
   syncUserInfo() async {
@@ -87,6 +150,26 @@ class AccountViewModel {
       return callBack;
     }
     return callBack;
+  }
+
+  Future<List<AssetsHistory>> getAssetsHistory() async {
+    User user = await User.getInstance();
+    if ("" == user.token) {
+      print('没有用户');
+      return [];
+    }
+    return _model.getAssetsHistory(user.token);
+  }
+
+  /// 转赠喵点
+  transferAssets(var password,anotherUsername,count) async {
+    User user = await User.getInstance();
+    if ("" == user.token) {
+      print('没有用户');
+      return [];
+    }
+    CallBack callback = await _model.transferAssets(password,anotherUsername,count,user.token);
+    return callback;
   }
 
 }

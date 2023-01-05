@@ -75,8 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "buyVIP": MessageLookupByLibrary.simpleMessage("购买会员"),
         "buying": MessageLookupByLibrary.simpleMessage(
             "请耐心等待, 正在进行应用内购买, 若很久没反应，请重新再试"),
-        "canNotNull":
-            MessageLookupByLibrary.simpleMessage("用户名、密码、邮箱及邮箱验证码均不可为空"),
+        "canNotNull": MessageLookupByLibrary.simpleMessage("所需信息均不可为空"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "change2": MessageLookupByLibrary.simpleMessage("更改为"),
         "changeBookName": MessageLookupByLibrary.simpleMessage("修改书名"),
@@ -231,6 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passageSettings": MessageLookupByLibrary.simpleMessage("文章设置"),
         "password": MessageLookupByLibrary.simpleMessage("密码"),
         "passwordConfirmed": MessageLookupByLibrary.simpleMessage("密码确认"),
+        "passwordReset": MessageLookupByLibrary.simpleMessage("密码重置"),
         "payRecovery": MessageLookupByLibrary.simpleMessage("恢复购买"),
         "pinError": MessageLookupByLibrary.simpleMessage("6位密码错误"),
         "pinInput": MessageLookupByLibrary.simpleMessage("请输入密码"),
@@ -257,6 +257,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "registerUnsuccessfully": MessageLookupByLibrary.simpleMessage("注册失败"),
         "registering": MessageLookupByLibrary.simpleMessage("注册中"),
         "remindLater": MessageLookupByLibrary.simpleMessage("稍后提醒"),
+        "reset": MessageLookupByLibrary.simpleMessage("重置"),
+        "resetting": MessageLookupByLibrary.simpleMessage("重置中，请小伙伴耐心等待"),
         "restOfAssets": MessageLookupByLibrary.simpleMessage("喵点余额"),
         "safety": MessageLookupByLibrary.simpleMessage("安全"),
         "saidPreview": MessageLookupByLibrary.simpleMessage("一言预览"),

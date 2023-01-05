@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:miaodi_web/view/account_page.dart';
+import 'package:miaodi_web/view/forget_password_page.dart';
 import 'package:miaodi_web/view/register_page.dart';
 
 import 'generated/l10n.dart';
@@ -39,8 +40,12 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.amber,
       ),
-      initialRoute: '/',
+      // initialRoute: '/',
       routes: {
+        '/forgetPassword': (context) {
+          print('register');
+          return ForgetPasswordPage();
+        },
         '/register': (context) {
           print('register');
           return RegisterPage();

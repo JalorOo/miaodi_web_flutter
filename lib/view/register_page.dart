@@ -7,6 +7,7 @@ import 'package:miaodi_web/common/style.dart';
 import 'package:miaodi_web/data/callback.dart';
 import 'package:miaodi_web/generated/l10n.dart';
 import 'package:miaodi_web/utils/event_bus.dart';
+import 'package:miaodi_web/utils/https_util.dart';
 import 'package:miaodi_web/utils/ui_utils.dart';
 import 'package:miaodi_web/viewModel/account_view_model.dart';
 import 'package:miaodi_web/widget/tips_dialog.dart';
@@ -52,7 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ? S.of(context).registerSuccessfully
                 : S.of(context).registerUnsuccessfully+","+S.of(context).reason+": ${(arg).message}");
         if ((arg).success == true) {
-          Navigator.pop(context); //关闭界面
+          await HttpsUtil.getResponse("http://localhost:10380/registerWinClose");
         }
       }
     });
@@ -62,11 +63,12 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   elevation: 0,
-        //   backgroundColor: UiUtils.isDarkMode(context) ? darkMainColor : mainColor,
-        //   title: Text(S.of(context).register),
-        // ),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: UiUtils.isDarkMode(context) ? darkMainColor : mainColor,
+          title: Text(S.of(context).register),
+          leading: const SizedBox(),
+        ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(

@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^4.0.0 # 网络请求
   url_launcher: ^6.0.8 # 链接跳转
+  flutter_svg: ^0.21.0 # svg显示库 用于显示svg类型的图片
 
 dev_dependencies:
   flutter_test:

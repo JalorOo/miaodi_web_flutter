@@ -88,7 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "buying": MessageLookupByLibrary.simpleMessage(
             "Please be patient, in-app purchase is in progress, if there is no response for a long time, please try again"),
         "canNotNull": MessageLookupByLibrary.simpleMessage(
-            "Username, password, email and email verification code cannot be empty"),
+            "The necessary information cannot be empty"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "change2": MessageLookupByLibrary.simpleMessage("Change to"),
         "changeBookName":
@@ -188,8 +188,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "getAppInfo": MessageLookupByLibrary.simpleMessage("Getting AppInfo"),
         "getCodeTips": MessageLookupByLibrary.simpleMessage(
             "You can get code by activities"),
-        "getVerifyCode":
-            MessageLookupByLibrary.simpleMessage("Get Verification Code"),
+        "getVerifyCode": MessageLookupByLibrary.simpleMessage("Get"),
         "goToLearn": MessageLookupByLibrary.simpleMessage("Get"),
         "grant": MessageLookupByLibrary.simpleMessage("Grant"),
         "hadPaid": MessageLookupByLibrary.simpleMessage("Already purchased?"),
@@ -291,6 +290,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordConfirmed":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "passwordReset": MessageLookupByLibrary.simpleMessage("Password Reset"),
         "payRecovery":
             MessageLookupByLibrary.simpleMessage("Recovery Purchases"),
         "pinError": MessageLookupByLibrary.simpleMessage("PIN error"),
@@ -326,6 +326,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Registration failed"),
         "registering": MessageLookupByLibrary.simpleMessage("Registering"),
         "remindLater": MessageLookupByLibrary.simpleMessage("Remind later"),
+        "reset": MessageLookupByLibrary.simpleMessage("Reset"),
+        "resetting": MessageLookupByLibrary.simpleMessage(
+            "Reset in progress, please wait patiently"),
         "restOfAssets": MessageLookupByLibrary.simpleMessage("Rest"),
         "safety": MessageLookupByLibrary.simpleMessage("Safety"),
         "saidPreview": MessageLookupByLibrary.simpleMessage("Said preview"),

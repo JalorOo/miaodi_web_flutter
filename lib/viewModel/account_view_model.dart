@@ -172,4 +172,12 @@ class AccountViewModel {
     return callback;
   }
 
+  Future<CallBack> forgetPasswordGetEmailVerify(String email) async {
+    return await _model.forgetPasswordVerify(email);
+  }
+
+  Future<CallBack> verifyNewPasswordByForgot(String email, String verifyCode, String password) async {
+    return await _model.verifyNewPasswordByForgot(email, verifyCode, password);
+  }
+
 }

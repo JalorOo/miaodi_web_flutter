@@ -69,4 +69,8 @@ class Constant{
   static String assets = "/assets";
 
   static String transfer = "/transfer";
+
+  static String forgetPassword = "/forget";
+
+  static String verifyNewPasswordByForget = "/verifyV1";
 }

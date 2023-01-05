@@ -104,10 +104,10 @@
   "saveSettings": "Save Settings",
   "saveSuccessfully": "Save successfully",
   "verifyCode": "Verify Code",
-  "getVerifyCode": "Get Verification Code",
+  "getVerifyCode": "Get",
   "fillEmail": "Please fill in the email address first",
   "registering": "Registering",
-  "canNotNull": "Username, password, email and email verification code cannot be empty",
+  "canNotNull": "The necessary information cannot be empty",
   "registerSuccessfully": "Registered successfully",
   "registerUnsuccessfully": "Registration failed",
   "cloudPassageTitle": "Cloud Article: {name}",
@@ -253,5 +253,8 @@
   "getAppInfo": "Getting AppInfo",
   "editPassage": "Edit",
   "editPassageSettingsTips": "Only settings this passage after save",
-  "assetsTransferringTips": "Please check the user name and credit limit of the transfer again before entering. Once the transfer is made, cancellation is no longer supported"
+  "assetsTransferringTips": "Please check the user name and credit limit of the transfer again before entering. Once the transfer is made, cancellation is no longer supported",
+  "reset": "Reset",
+  "resetting": "Reset in progress, please wait patiently",
+  "passwordReset": "Password Reset"
 }

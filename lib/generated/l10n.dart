@@ -1100,10 +1100,10 @@ class S {
     );
   }
 
-  /// `Get Verification Code`
+  /// `Get`
   String get getVerifyCode {
     return Intl.message(
-      'Get Verification Code',
+      'Get',
       name: 'getVerifyCode',
       desc: '',
       args: [],
@@ -1130,10 +1130,10 @@ class S {
     );
   }
 
-  /// `Username, password, email and email verification code cannot be empty`
+  /// `The necessary information cannot be empty`
   String get canNotNull {
     return Intl.message(
-      'Username, password, email and email verification code cannot be empty',
+      'The necessary information cannot be empty',
       name: 'canNotNull',
       desc: '',
       args: [],
@@ -2595,6 +2595,36 @@ class S {
     return Intl.message(
       'Please check the user name and credit limit of the transfer again before entering. Once the transfer is made, cancellation is no longer supported',
       name: 'assetsTransferringTips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset`
+  String get reset {
+    return Intl.message(
+      'Reset',
+      name: 'reset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset in progress, please wait patiently`
+  String get resetting {
+    return Intl.message(
+      'Reset in progress, please wait patiently',
+      name: 'resetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password Reset`
+  String get passwordReset {
+    return Intl.message(
+      'Password Reset',
+      name: 'passwordReset',
       desc: '',
       args: [],
     );

@@ -160,6 +160,28 @@ class AccountModel {
     return callBack;
   }
 
+  Future<CallBack> forgetPasswordVerify(String email) async {
+    Map<String, String> args = HashMap();
+    args["email"] = email;
+    CallBack callBack = await HttpsUtil.postResponseWithHeaderAndArgus(
+      Constant.ip + Constant.user + Constant.forgetPassword,
+      args,
+    );
+    return callBack;
+  }
+
+  Future<CallBack> verifyNewPasswordByForgot(String email, String verifyCode, String password) async {
+    Map<String, String> args = HashMap();
+    args["email"] = email;
+    args["verifyCode"] = verifyCode;
+    args["password"] = password;
+    CallBack callBack = await HttpsUtil.postResponseWithHeaderAndArgus(
+      Constant.ip + Constant.user + Constant.verifyNewPasswordByForget,
+      args,
+    );
+    return callBack;
+  }
+
   Future<CallBack> getPayLink(String token) async {
     Options options = Options(headers: {'token': token});
     CallBack callBack = await HttpsUtil.getResponse(

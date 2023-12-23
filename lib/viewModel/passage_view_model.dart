@@ -5,7 +5,10 @@ import 'package:miaodi_web/data/cloud_passage.dart';
 import 'package:miaodi_web/utils/https_util.dart';
 import 'package:miaodi_web/utils/time_utils.dart';
 
+import '../model/passage_model.dart';
+
 class PassageViewModel{
+  PassageModel _model = PassageModel.getInstance();
 
   int _pageNum = 0;
   int _loadingPageNum = 0;
@@ -24,10 +27,14 @@ class PassageViewModel{
   List<TextMatch> textMatchList = [];
 
   static List<CloudPassage> cloudPassagesList = [];
+  static List<CloudPassage> trashPassagesList = [];
   Stream<List<CloudPassage>>? cloudPassageStream;
+  Stream<List<CloudPassage>>? trashPassageStream;
 
   PassageViewModel._internal() {
     // 构造方法中初始化流相关的对象
+    cloudPassageStream = _model.cloudPassagesController!.stream as Stream<List<CloudPassage>>;
+    trashPassageStream = _model.trashPassagesController!.stream as Stream<List<CloudPassage>>;
   }
 
   static PassageViewModel? _viewModel;
@@ -44,6 +51,52 @@ class PassageViewModel{
     print('拿到文章=>${result.success!}');
     int length = result.data!["length"];
     return length;
+  }
+
+  Future<CallBack> shareCloudPassage(CloudPassage cloudPassage,
+      {String password = ""}) async {
+    return await _model.shareCloudPassage(cloudPassage.id.toString(), password);
+  }
+
+  Future<CallBack> shareCloudPassageById(String id,
+      {String password = ""}) async {
+    return await _model.shareCloudPassage(id, password);
+  }
+
+  Future<CallBack> unShareCloudPassage(CloudPassage cloudPassage) async {
+    return await _model.unShareCloudPassage(cloudPassage);
+  }
+
+  /// [queryCloudPassages] 查询云服务中的文章
+  /// 其中[refresh] 是指是否为刷新操作，若是刷新操作，则需要重新从第一页开始查询
+  Future<void> queryCloudPassages({bool refresh = false}) async {
+    if (refresh) {
+      _pageNum = 0;
+    } else {
+      _pageNum++;
+    }
+    await _model.queryCloudPassages(_pageNum);
+  }
+
+  Future<void> removeCloudPassage(CloudPassage cloudPassage) async {
+    await _model.removeCloudPassage(cloudPassage);
+  }
+
+  Future<void> deleteCloudPassage(CloudPassage cloudPassage) async {
+    await _model.deleteCloudPassage(cloudPassage);
+  }
+
+  Future<void> recoverCloudPassage(CloudPassage cloudPassage) async {
+    await _model.recoverCloudPassage(cloudPassage);
+  }
+
+  Future<void> queryTrashPassages({bool refresh = false}) async {
+    if (refresh) {
+      _pageNum = 0;
+    } else {
+      _pageNum++;
+    }
+    await _model.queryTrashPassages(_pageNum);
   }
 
 }

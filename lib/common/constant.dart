@@ -1,12 +1,18 @@
+import 'config.dart';
+
 class Constant{
 
-  static String ip = "https://api.libv.cc/miaodi";
+  static String ip = ipIn;
 
-  static String webSocketIp = "wss://api.libv.cc/miaodiss/webSocket";
+  static String webSocketIp = webSocketIpIn;
+
+  static String pictureApiUrl = "https://picture.miaodiapp.com/api/upload";
 
   static String web = "https://libv.miaodiapp.com";
 
   static String query = "/queryV1";
+
+  static String queryAll = "/queryAllV1";
 
   static String add = "/addByFile";
 
@@ -73,4 +79,8 @@ class Constant{
   static String forgetPassword = "/forget";
 
   static String verifyNewPasswordByForget = "/verifyV1";
+
+  static String trash = "/trashV1";
+
+  static String pageBackup = "/pageBackup";
 }

@@ -9,6 +9,9 @@ class CloudPassage {
   String? updateTime;
   String? createTime;
   String? content;
+  String? fid;
+  String? pid;
+  int? type;
 
   CloudPassage(
       {this.id,
@@ -20,7 +23,10 @@ class CloudPassage {
         this.chara,
         this.updateTime,
         this.createTime,
-        this.content});
+        this.content,
+        this.fid,
+        this.pid,
+        this.type});
 
   CloudPassage.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -33,6 +39,9 @@ class CloudPassage {
     updateTime = json['updateTime'];
     createTime = json['createTime'];
     content = json['content'];
+    fid = json['fid'];
+    pid = json['pid'];
+    type = json['type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +56,9 @@ class CloudPassage {
     data['updateTime'] = this.updateTime;
     data['createTime'] = this.createTime;
     data['content'] = this.content;
+    data['fid'] = fid;
+    data['pid'] = pid;
+    data['type'] = type;
     return data;
   }
 }

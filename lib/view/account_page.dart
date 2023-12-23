@@ -6,6 +6,7 @@ import 'package:miaodi_web/common/style.dart';
 import 'package:miaodi_web/data/callback.dart';
 import 'package:miaodi_web/data/user.dart';
 import 'package:miaodi_web/generated/l10n.dart';
+import 'package:miaodi_web/view/cloud/cloud_services_page.dart';
 import 'package:miaodi_web/view/edit_information_page.dart';
 import 'package:miaodi_web/utils/time_utils.dart';
 import 'package:miaodi_web/utils/ui_utils.dart';
@@ -299,8 +300,8 @@ class _AccountPageState extends State<AccountPage> {
                     _user == null
                         ? S.of(context).loading
                         : _user!.vip
-                        ? S.of(context).membership
-                        : S.of(context).needActivate,
+                            ? S.of(context).membership
+                            : S.of(context).needActivate,
                     style: TextStyle(color: Colors.grey),
                   ),
                 ],
@@ -357,8 +358,8 @@ class _AccountPageState extends State<AccountPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            onTap: (){
-              Navigator.push(context, CupertinoPageRoute(builder: (context){
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context) {
                 return AssetsPage();
               }));
             },
@@ -398,9 +399,9 @@ class _AccountPageState extends State<AccountPage> {
         //   // 永久会员打开网页
         // }
         CallBack s = await _accountViewModel.getPayLink();
-        if(!s.success!){
+        if (!s.success!) {
           TipsDialog.show(context, "出错了", s.message!);
-        }else {
+        } else {
           launch(s.data!["url"]);
         }
       },
@@ -434,10 +435,10 @@ class _AccountPageState extends State<AccountPage> {
                       _user == null
                           ? S.of(context).loading
                           : _user!.vip
-                          ? _user!.expiredTime == ""
-                          ? S.of(context).foreverMembership
-                          : S.of(context).activated(_user!.expiredTime)
-                          : S.of(context).aboutMembership,
+                              ? _user!.expiredTime == ""
+                                  ? S.of(context).foreverMembership
+                                  : S.of(context).activated(_user!.expiredTime)
+                              : S.of(context).aboutMembership,
                       style: TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                   ],
@@ -449,9 +450,9 @@ class _AccountPageState extends State<AccountPage> {
               padding: EdgeInsets.fromLTRB(10, 4, 10, 4),
               decoration: BoxDecoration(
                   color:
-                  _user == null || !_user!.vip || _user!.expiredTime != ""
-                      ? thirdColor
-                      : Colors.orange,
+                      _user == null || !_user!.vip || _user!.expiredTime != ""
+                          ? thirdColor
+                          : Colors.orange,
                   borderRadius: BorderRadius.all(
                     Radius.circular(16),
                   )),
@@ -459,10 +460,10 @@ class _AccountPageState extends State<AccountPage> {
                 _user == null
                     ? S.of(context).loading
                     : _user!.vip
-                    ? _user!.expiredTime == ""
-                    ? S.of(context).myPrivilege
-                    : S.of(context).continueVIP
-                    : S.of(context).purchase,
+                        ? _user!.expiredTime == ""
+                            ? S.of(context).myPrivilege
+                            : S.of(context).continueVIP
+                        : S.of(context).purchase,
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -528,7 +529,10 @@ class _AccountPageState extends State<AccountPage> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    launch('https://libv.cc/cloud');
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return CloudServicesPage();
+                    }));
                   },
                   child: _serviceItem(
                       leading: Icon(
@@ -550,6 +554,19 @@ class _AccountPageState extends State<AccountPage> {
                       color: Colors.grey,
                     ),
                     title: Text(S.of(context).platformSupport,
+                        style: TextStyle(fontSize: 12, color: Colors.grey)),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    launch('https://miaodiapp.com/');
+                  },
+                  child: _serviceItem(
+                    leading: Icon(
+                      Icons.help,
+                      color: Colors.grey,
+                    ),
+                    title: Text(S.of(context).help,
                         style: TextStyle(fontSize: 12, color: Colors.grey)),
                   ),
                 ),
@@ -578,36 +595,36 @@ class _AccountPageState extends State<AccountPage> {
           ),
           Center(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                    onTap: () {
-                      _controller.text = "";
-                      _focusNode.requestFocus();
-                      InputBottomSheet.oneInput(
-                          context,
-                          _controller,
-                          _focusNode,
-                          S.of(context).accountDelete,
-                          S.of(context).logoutWarning, () async {
-                        if (_controller.text.isNotEmpty) {
-                          Navigator.pop(context);
-                          TipsDialog.wait(context, S.of(context).wait,
-                              S.of(context).loggingOut);
-                          CallBack callback = await _accountViewModel
-                              .deleteAccount(_controller.text);
-                          Navigator.pop(context);
-                          if (callback.success!) {
-                            TipsDialog.toast(context, callback.message!);
-                          } else {
-                            TipsDialog.show(
-                                context, S.of(context).error, callback.message!);
-                          }
-                        }
-                      }, obscureText: true);
-                    },
-                    child: Text(S.of(context).accountDelete,
-                        style: TextStyle(color: Colors.blue))),
-              ))
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+                onTap: () {
+                  _controller.text = "";
+                  _focusNode.requestFocus();
+                  InputBottomSheet.oneInput(
+                      context,
+                      _controller,
+                      _focusNode,
+                      S.of(context).accountDelete,
+                      S.of(context).logoutWarning, () async {
+                    if (_controller.text.isNotEmpty) {
+                      Navigator.pop(context);
+                      TipsDialog.wait(context, S.of(context).wait,
+                          S.of(context).loggingOut);
+                      CallBack callback = await _accountViewModel
+                          .deleteAccount(_controller.text);
+                      Navigator.pop(context);
+                      if (callback.success!) {
+                        TipsDialog.toast(context, callback.message!);
+                      } else {
+                        TipsDialog.show(
+                            context, S.of(context).error, callback.message!);
+                      }
+                    }
+                  }, obscureText: true);
+                },
+                child: Text(S.of(context).accountDelete,
+                    style: TextStyle(color: Colors.blue))),
+          ))
         ],
       ),
     );

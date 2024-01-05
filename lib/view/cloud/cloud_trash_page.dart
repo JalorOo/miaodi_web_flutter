@@ -127,7 +127,7 @@ class _CloudTrashPageState extends State<CloudTrashPage>
                             },
                             recover: () {
                               _passageViewModel
-                                  .deleteCloudPassage(snapshot.data![index]);
+                                  .recoverCloudPassage(snapshot.data![index]);
                             },
                           ),
                         );

@@ -10,6 +10,9 @@ class UserInfo {
   String? vip;
   int? assets;
   String? createTime;
+  String? aiKey;
+  String? aiUrl;
+  String? aiModelName;
 
   UserInfo(
       {this.punchTime,
@@ -19,7 +22,7 @@ class UserInfo {
         this.username,
         this.objectId,
         this.vip,
-        this.assets,this.createTime});
+        this.assets,this.createTime,this.aiKey,this.aiModelName,this.aiUrl});
 
   UserInfo.fromJson(Map<String, dynamic> json) {
     punchTime = json['punchTime'];
@@ -31,12 +34,15 @@ class UserInfo {
     vip = json['vip'];
     assets = json['assets'];
     createTime = json['createTime'];
+    aiKey = json['aiKey'];
+    aiModelName = json['aiModelName'];
+    aiUrl = json['aiUrl'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['punchTime'] = this.punchTime;
-    data['time'] = this.time;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['punchTime'] = punchTime;
+    data['time'] = time;
     data['email'] = this.email;
     data['punch'] = this.punch;
     data['username'] = this.username;
@@ -44,6 +50,9 @@ class UserInfo {
     data['vip'] = this.vip;
     data['assets'] = this.assets;
     data['createTime'] = this.createTime;
+    data['aiKey'] = this.aiKey;
+    data['aiModelName'] = this.aiModelName;
+    data['aiUrl'] = this.aiUrl;
     return data;
   }
 }

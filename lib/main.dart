@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:miaodi_web/view/account_page.dart';
+import 'package:miaodi_web/view/chat/chat_page.dart';
 import 'package:miaodi_web/view/forget_password_page.dart';
 import 'package:miaodi_web/view/register_page.dart';
 
@@ -49,6 +50,10 @@ class MyApp extends StatelessWidget {
         '/register': (context) {
           print('register');
           return RegisterPage();
+        },
+        '/chat': (context) {
+          print('chat');
+          return ChatPage();
         },
         '/': (context) {
           return AccountPage();

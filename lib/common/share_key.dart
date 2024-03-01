@@ -9,6 +9,12 @@ class ShareKey {
 
   static String picAddress = "picAddress";
 
+  static String aiUrl = "aiUrl";
+
+  static String aiModelName = "aiModelName";
+
+  static String aiKey = "aiKey";
+
   static String userName = "userName";
 
   static String email = 'email';

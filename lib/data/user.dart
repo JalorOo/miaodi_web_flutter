@@ -34,9 +34,39 @@ class User {
     return _user!;
   }
 
+  String get aiKey {
+    String? v = _sharedPreferences!.aiKey;
+    return v == null ? "" : v;
+  }
+
+  set aiKey(String username) {
+    _sharedPreferences!.aiKey = username;
+    HttpsUtil.postResponseWithHeaderAndJson("http://localhost:10380/update/aiKey",{"aiKey":username});
+  }
+
+  String get aiUrl {
+    String? v = _sharedPreferences!.aiUrl;
+    return v == null ? "" : v;
+  }
+
+  set aiUrl(String username) {
+    _sharedPreferences!.aiUrl = username;
+    HttpsUtil.postResponseWithHeaderAndJson("http://localhost:10380/update/aiUrl",{"aiUrl":username});
+  }
+
+  String get aiModelName {
+    String? v = _sharedPreferences!.aiModelName;
+    return v == null ? "" : v;
+  }
+
+  set aiModelName(String username) {
+    _sharedPreferences!.aiModelName = username;
+    HttpsUtil.postResponseWithHeaderAndJson("http://localhost:10380/update/aiModelName",{"aiModelName":username});
+  }
+
   String get username {
-    String? username = _sharedPreferences!.username;
-    return username == null ? "" : username;
+    String? v = _sharedPreferences!.username;
+    return v == null ? "" : v;
   }
 
   set username(String username) {

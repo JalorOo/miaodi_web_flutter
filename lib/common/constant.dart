@@ -8,11 +8,13 @@ class Constant{
 
   static String pictureApiUrl = "https://picture.miaodiapp.com/api/upload";
 
+  static String aiApiUrl = "https://api.chatanywhere.tech/v1/chat/completions";
+
   static String web = "https://libv.miaodiapp.com";
 
   static String query = "/queryV1";
 
-  static String queryAll = "/queryAllV1";
+  static String queryAll = "/queryAllV2";
 
   static String add = "/addByFile";
 
@@ -83,4 +85,6 @@ class Constant{
   static String trash = "/trashV1";
 
   static String pageBackup = "/pageBackup";
+
+  static String miaodiAI = "/ai/chat";
 }
